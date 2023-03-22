@@ -1,10 +1,8 @@
-// tests/unit/services/transfer.test.ts
-
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
 import ICar from '../../../src/Interfaces/ICar';
-import CarsService from '../../../src/Services/CarsService';
+import CarsService from '../../../src/Services/CarService';
 import Car from '../../../src/Domains/Vehicles/Car';
 
 describe('Testes rota car', function () {
