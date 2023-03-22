@@ -1,6 +1,7 @@
 import CategoryTypes from '../utils/CategoryTypes';
 
 interface IMotorcycle {
+  id?: string;
   model: string;
   year: number;
   color: string;

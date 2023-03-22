@@ -7,12 +7,44 @@ class Car {
     this.car = car;
   }
 
-  public getCar() {
-    return this.car;
+  public getCarModel() {
+    return this.car.model;
   }
 
-  public setCar(value: ICar) {
-    this.car = value;
+  public setCarModel(value: string) {
+    this.car.model = value;
+  }
+
+  public getCarYear() {
+    return this.car.year;
+  }
+
+  public setCarYear(value: number) {
+    this.car.year = value;
+  }
+
+  public getCarColor() {
+    return this.car.color;
+  }
+
+  public setCarColor(value: string) {
+    this.car.color = value;
+  }
+
+  public getCarStatus() {
+    return this.car.status;
+  }
+
+  public setCarStatus(value: boolean) {
+    this.car.status = value;
+  }
+
+  public getCarBuyValue() {
+    return this.car.buyValue;
+  }
+
+  public setCarBuyValue(value: number) {
+    this.car.buyValue = value;
   }
 }
 
