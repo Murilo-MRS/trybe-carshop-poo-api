@@ -21,7 +21,7 @@ describe('Testes rota cars:', function () {
         doorsQty: 4,
         seatsQty: 5,
       };
-      const carOutput: Car = new Car({
+      const carOutput = new Car({
         id: '6348513f34c397abcad040b2',
         model: 'Marea',
         year: 2002,
@@ -30,7 +30,7 @@ describe('Testes rota cars:', function () {
         buyValue: 15.990,
         doorsQty: 4,
         seatsQty: 5,
-      });
+      }).createDomain();
       sinon.stub(Model, 'create').resolves(carOutput);
       // Act
       const service = new CarService(new CarODM());
@@ -51,7 +51,7 @@ describe('Testes rota cars:', function () {
         doorsQty: 4,
         seatsQty: 5,
       }];
-      const outputCarArray = inputCarArray.map((car) => new Car(car));
+      const outputCarArray = inputCarArray.map((car) => new Car(car).createDomain());
       sinon.stub(Model, 'find').resolves(outputCarArray);
       // Act
       const service = new CarService(new CarODM());
@@ -70,7 +70,7 @@ describe('Testes rota cars:', function () {
         buyValue: 15.990,
         doorsQty: 4,
         seatsQty: 5,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputCarArray);
       // Act
       const service = new CarService(new CarODM());
@@ -98,7 +98,7 @@ describe('Testes rota cars:', function () {
         buyValue: 15.990,
         doorsQty: 4,
         seatsQty: 5,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputCarArray);
       sinon.stub(Model, 'findByIdAndUpdate').resolves(outputCarArray);
       // Act
@@ -118,7 +118,7 @@ describe('Testes rota cars:', function () {
         buyValue: 15.990,
         doorsQty: 4,
         seatsQty: 5,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputCarArray);
       sinon.stub(Model, 'findByIdAndDelete').resolves({ n: 1, deletedCount: 1, ok: 1 });
       // Act

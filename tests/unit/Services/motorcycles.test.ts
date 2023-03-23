@@ -8,7 +8,7 @@ import MotorcycleODM from '../../../src/Models/MotorcycleODM';
 import AppError from '../../../src/errors/AppError';
 import ErrorTypes from '../../../src/utils/ErrorTypes';
 
-describe('Testes rota cars:', function () {
+describe('Testes rota motorcycles:', function () {
   const modelMotorcycle = 'Honda Cb 600f Hornet';
   describe('Caminho com Sucesso', function () {
     it('Deveria cadastar um moto com SUCESSO', async function () {
@@ -22,7 +22,7 @@ describe('Testes rota cars:', function () {
         category: 'Street',
         engineCapacity: 600,
       };
-      const motorcycleOutput: Motorcycle = new Motorcycle({
+      const motorcycleOutput: IMotorcycle = new Motorcycle({
         id: '6348513f34c397abcad040b2',
         model: modelMotorcycle,
         year: 2005,
@@ -31,11 +31,11 @@ describe('Testes rota cars:', function () {
         buyValue: 30.000,
         category: 'Street',
         engineCapacity: 600,
-      });
+      }).createDomain();
       sinon.stub(Model, 'create').resolves(motorcycleOutput);
       // Act
       const service = new MotorcycleService(new MotorcycleODM());
-      const result = await service.createCar(motorcycleInput);
+      const result = await service.createMotorcycle(motorcycleInput);
       // Assert
       expect(result).to.be.deep.equal(motorcycleOutput);
     });
@@ -52,11 +52,12 @@ describe('Testes rota cars:', function () {
         category: 'Street',
         engineCapacity: 600,
       }];
-      const outputMotorcycleArray = inputMotorcycleArray.map((car) => new Motorcycle(car));
+      const outputMotorcycleArray = inputMotorcycleArray
+        .map((car) => new Motorcycle(car).createDomain());
       sinon.stub(Model, 'find').resolves(outputMotorcycleArray);
       // Act
       const service = new MotorcycleService(new MotorcycleODM());
-      const result = await service.getAllCars();
+      const result = await service.getAllMotorcycles();
       // Assert
       expect(result).to.be.deep.equal(outputMotorcycleArray);
     });
@@ -71,7 +72,7 @@ describe('Testes rota cars:', function () {
         buyValue: 30.000,
         category: 'Street',
         engineCapacity: 600,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputMotorcycleArray);
       // Act
       const service = new MotorcycleService(new MotorcycleODM());
@@ -99,7 +100,7 @@ describe('Testes rota cars:', function () {
         buyValue: 30.000,
         category: 'Street',
         engineCapacity: 600,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputMotorcycleArray);
       sinon.stub(Model, 'findByIdAndUpdate').resolves(outputMotorcycleArray);
       // Act
@@ -119,7 +120,7 @@ describe('Testes rota cars:', function () {
         buyValue: 30.000,
         category: 'Street',
         engineCapacity: 600,
-      });
+      }).createDomain();
       sinon.stub(Model, 'findById').resolves(outputMotorcycleArray);
       sinon.stub(Model, 'findByIdAndDelete').resolves({ n: 1, deletedCount: 1, ok: 1 });
       // Act
@@ -155,7 +156,7 @@ describe('Testes rota cars:', function () {
         await service.findById('6348513f34c397abcad040b2');
       } catch (error) {
         // Assert
-        expect((error as AppError).message).to.equal(ErrorTypes.carNotFound);
+        expect((error as AppError).message).to.equal(ErrorTypes.motorcyclesNotFound);
       }
     });
     afterEach(function () {
@@ -195,7 +196,7 @@ describe('Testes rota cars:', function () {
         await service.update('6348513f34c397abcad040b2', inputMotorcycle);
       } catch (error) {
         // Assert
-        expect((error as AppError).message).to.equal(ErrorTypes.carNotFound);
+        expect((error as AppError).message).to.equal(ErrorTypes.motorcyclesNotFound);
       }
     });
     afterEach(function () {
@@ -225,7 +226,7 @@ describe('Testes rota cars:', function () {
         await service.delete('6348513f34c397abcad040b2');
       } catch (error) {
         // Assert
-        expect((error as AppError).message).to.equal(ErrorTypes.carNotFound);
+        expect((error as AppError).message).to.equal(ErrorTypes.motorcyclesNotFound);
       }
     });
     afterEach(function () {
