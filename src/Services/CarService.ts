@@ -10,20 +10,16 @@ class CarService {
     this._model = model;
   }
 
-  private createCarDomain(car: ICar): Car {
-    return new Car(car);
-  }
-
   public async createCar(data: ICar) {
     const newCar = await this._model.create(data);
-    return this.createCarDomain(newCar);
+    return new Car(newCar).createDomain();
   }
 
   public async getAllCars() {
     const allCars = await this._model.findAll();
     
     const carsArray = allCars.map((car) =>
-      this.createCarDomain(car));
+      new Car(car).createDomain());
     
     return carsArray; 
   }
@@ -33,7 +29,7 @@ class CarService {
     if (!car) {
       throw new AppError(404, ErrorTypes.carNotFound);
     }
-    return this.createCarDomain(car);
+    return new Car(car).createDomain();
   }
 
   public async update(id: string, carProperty: ICar) {
@@ -42,7 +38,7 @@ class CarService {
       throw new AppError(404, ErrorTypes.carNotFound);
     }
     const updatedCar = await this._model.update(id, carProperty);
-    return this.createCarDomain(updatedCar as ICar);
+    return new Car(updatedCar as ICar).createDomain();
   }
 
   public async delete(id: string) {
