@@ -10,6 +10,19 @@ class Motorcycle extends Vehicle {
     this._category = category;
     this._engineCapacity = engineCapacity;
   }
+  
+  public createDomain() {
+    return {
+      id: this.id,
+      model: this.model,
+      year: this.year,
+      color: this.color,
+      status: this.status,
+      buyValue: this.buyValue,
+      category: this._category,
+      engineCapacity: this._engineCapacity,
+    };
+  }
 }
 
 export default Motorcycle;
