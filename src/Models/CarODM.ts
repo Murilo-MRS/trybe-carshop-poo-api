@@ -12,7 +12,7 @@ class CarODM extends ODM<ICar> {
       buyValue: { type: Number, required: true },
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
-    });
+    }, { versionKey: false });
     super(schema, 'Car');
   }
 }

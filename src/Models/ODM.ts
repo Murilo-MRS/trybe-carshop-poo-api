@@ -26,12 +26,12 @@ abstract class ODM<T> {
     return this.model.findById(id);
   }
 
-  public async update(id: string, obj: T): Promise<T | null> {
+  public async update(id: string, obj: UpdateQuery<T>): Promise<T | null> {
     if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
 
     return this.model.findByIdAndUpdate(
-      { id },
-      { ...obj } as UpdateQuery<T>,
+      id,
+      obj,
       { new: true },
     );
   }

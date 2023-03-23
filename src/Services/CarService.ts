@@ -41,8 +41,8 @@ class CarService {
     if (!car) {
       throw new AppError(404, ErrorTypes.carNotFound);
     }
-
-    return this._model.update(id, carProperty);
+    const updatedCar = await this._model.update(id, carProperty);
+    return this.createCarDomain(updatedCar as ICar);
   }
 
   public async delete(id: string) {
