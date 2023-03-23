@@ -21,12 +21,6 @@ Projeto realizado durante módulo de Back-end do curso de desenvolvimento web da
 - `docker-compose`
 - `Express`;
 
-![DER](./assets/front-example.png)
-
-Diagrama ER e Entidades:
-
-![DER](./assets/diagrama-er.png)
-
 </details>
 <details>
   <summary><strong>Como rodar o projeto</strong></summary></br>
