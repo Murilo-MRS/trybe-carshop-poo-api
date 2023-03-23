@@ -1,13 +1,7 @@
-import CategoryTypes from '../utils/CategoryTypes';
+import IVehicle from './IVehicle';
 
-interface IMotorcycle {
-  id?: string;
-  model: string;
-  year: number;
-  color: string;
-  status?: boolean;
-  buyValue: number;
-  category: CategoryTypes;
+interface IMotorcycle extends IVehicle {
+  category: string;
   engineCapacity: number;
 }
 
