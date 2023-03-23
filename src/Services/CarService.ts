@@ -4,7 +4,7 @@ import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
 import ErrorTypes from '../utils/ErrorTypes';
 
-class CarServive {
+class CarService {
   private _model: CarODM;
   constructor(model: CarODM) {
     this._model = model;
@@ -55,4 +55,4 @@ class CarServive {
   }
 }
 
-export default CarServive;
+export default CarService;

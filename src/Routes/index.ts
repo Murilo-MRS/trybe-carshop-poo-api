@@ -1,10 +1,10 @@
-// import { Router } from 'express';
-// import carsRoutes from './cars/CarsRoutes';
+import { Router } from 'express';
+import carRoutes from './cars/CarsRoutes';
 // import motorcyclesRoutes from './motorcycles/MotoCyclesRoutes';
 
-// const routes = Router();
+const routes = Router();
 
-// routes.use('/cars', carsRoutes);
+routes.use('/cars', carRoutes);
 // routes.use('/motorcycles', motorcyclesRoutes);
 
-// export default routes;
+export default routes;
