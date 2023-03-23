@@ -21,24 +21,24 @@ abstract class ODM<T> {
     return this.model.find({});
   }
   
-  public async findById(_id: string) {
-    if (!isValidObjectId(_id)) throw new AppError(422, ErrorTypes.invalidMongoId);
-    return this.model.findById(_id);
+  public async findById(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+    return this.model.findById(id);
   }
 
-  public async update(_id: string, obj: T): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+  public async update(id: string, obj: T): Promise<T | null> {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
 
     return this.model.findByIdAndUpdate(
-      { _id },
+      { id },
       { ...obj } as UpdateQuery<T>,
       { new: true },
     );
   }
 
-  public async delete(_id: string) {
-    if (!isValidObjectId(_id)) throw new AppError(422, ErrorTypes.invalidMongoId);
-    return this.model.deleteOne({ _id });
+  public async delete(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+    return this.model.findByIdAndDelete(id);
   }
 }
 

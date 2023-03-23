@@ -1,4 +1,4 @@
-import IMotorcycle from '../../Interfaces/IMotorcycle';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 
 class Motorcycle {
   private Motorcycle: IMotorcycle;

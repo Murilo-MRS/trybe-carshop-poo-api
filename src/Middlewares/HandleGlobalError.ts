@@ -18,7 +18,7 @@ class HandleGlobalError {
           message,
         });
     }
-    return response.status(500).json({ message: 'Internal error' });
+    return response.status(500).json({ message });
   }
 }
 
