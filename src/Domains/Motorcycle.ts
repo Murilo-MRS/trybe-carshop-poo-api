@@ -1,18 +1,14 @@
 import IMotorcycle from '../Interfaces/IMotorcycle';
+import Vehicle from './Vehicle';
 
-class Motorcycle {
-  private Motorcycle: IMotorcycle;
+class Motorcycle extends Vehicle {
+  private _category: string;
+  private _engineCapacity: number;
 
-  constructor(motorcycle: IMotorcycle) {
-    this.Motorcycle = motorcycle;
-  }
-
-  public getMotorcycle() {
-    return this.Motorcycle;
-  }
-
-  public setMotorcycle(value: IMotorcycle) {
-    this.Motorcycle = value;
+  constructor({ id, model, year, color, status, buyValue, category, engineCapacity }: IMotorcycle) {
+    super({ id, model, year, color, status, buyValue });
+    this._category = category;
+    this._engineCapacity = engineCapacity;
   }
 }
 
