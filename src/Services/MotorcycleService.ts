@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import Motorcycle from '../Domains/Motorcycle';
 import AppError from '../errors/AppError';
 import IMotorcycle from '../Interfaces/IMotorcycle';
@@ -25,6 +26,8 @@ class MotorcycleService {
   }
 
   public async findById(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+    
     const motorcycle = await this._model.findById(id);
     if (!motorcycle) {
       throw new AppError(404, ErrorTypes.motorcyclesNotFound);
@@ -33,6 +36,8 @@ class MotorcycleService {
   }
 
   public async update(id: string, motorcycleProperty: IMotorcycle) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+    
     const motorcycle = await this._model.findById(id);
     if (!motorcycle) {
       throw new AppError(404, ErrorTypes.motorcyclesNotFound);
@@ -42,6 +47,8 @@ class MotorcycleService {
   }
 
   public async delete(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+    
     const motorcycle = await this._model.findById(id);
     if (!motorcycle) {
       throw new AppError(404, ErrorTypes.motorcyclesNotFound);

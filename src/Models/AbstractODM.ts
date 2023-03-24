@@ -1,6 +1,4 @@
-import { isValidObjectId, Model, models, Schema, UpdateQuery, model } from 'mongoose';
-import AppError from '../errors/AppError';
-import ErrorTypes from '../utils/ErrorTypes';
+import { Model, models, Schema, UpdateQuery, model } from 'mongoose';
 
 abstract class ODM<T> {
   protected model: Model<T>;
@@ -22,13 +20,10 @@ abstract class ODM<T> {
   }
   
   public async findById(id: string) {
-    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
     return this.model.findById(id);
   }
 
   public async update(id: string, obj: UpdateQuery<T>): Promise<T | null> {
-    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
-
     return this.model.findByIdAndUpdate(
       id,
       obj,
@@ -37,7 +32,6 @@ abstract class ODM<T> {
   }
 
   public async delete(id: string) {
-    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
     return this.model.findByIdAndDelete(id);
   }
 }

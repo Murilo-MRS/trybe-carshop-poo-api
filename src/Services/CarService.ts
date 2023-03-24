@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import Car from '../Domains/Car';
 import AppError from '../errors/AppError';
 import ICar from '../Interfaces/ICar';
@@ -25,6 +26,8 @@ class CarService {
   }
 
   public async findById(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+
     const car = await this._model.findById(id);
     if (!car) {
       throw new AppError(404, ErrorTypes.carNotFound);
@@ -33,6 +36,8 @@ class CarService {
   }
 
   public async update(id: string, carProperty: ICar) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+
     const car = await this._model.findById(id);
     if (!car) {
       throw new AppError(404, ErrorTypes.carNotFound);
@@ -42,6 +47,8 @@ class CarService {
   }
 
   public async delete(id: string) {
+    if (!isValidObjectId(id)) throw new AppError(422, ErrorTypes.invalidMongoId);
+
     const car = await this._model.findById(id);
     if (!car) {
       throw new AppError(404, ErrorTypes.carNotFound);
