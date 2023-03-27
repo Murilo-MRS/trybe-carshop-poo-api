@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "tsnd src/server.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest -i --verbose",
     "test:mocha": "mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
     "test:coverage": "nyc mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000"
   },

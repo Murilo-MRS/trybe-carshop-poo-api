@@ -8,7 +8,7 @@ import CarODM from '../../../src/Models/CarODM';
 import AppError from '../../../src/errors/AppError';
 import ErrorTypes from '../../../src/utils/ErrorTypes';
 
-describe('Testes rota cars:', function () {
+describe('CAMADA SERVICE - cars:', function () {
   describe('Caminho com Sucesso', function () {
     it('Deveria cadastar um carro com SUCESSO', async function () {
     // Arrange

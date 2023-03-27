@@ -11,7 +11,7 @@ Chai.use(sinonChai);
 
 const { expect } = Chai;
 
-describe('Testando a camada controller de cars', function () {
+describe('CAMADA CONTROLLER - motorcycles', function () {
   const baseModel = new MotorcycleModel();
   const baseService = new MotorcycleService(baseModel);
   const baseController = new MotorcycleController(baseService);
@@ -20,7 +20,7 @@ describe('Testando a camada controller de cars', function () {
 
   const error = new Error(messageError);
 
-  it('Testando create', async function () {
+  it('Testando createMotorcycle', async function () {
     const body = { 
       model: 'Honda Cb 800f Hornet',
       year: 2005,
@@ -42,15 +42,15 @@ describe('Testando a camada controller de cars', function () {
       ...body,
     };
 
-    Sinon.stub(baseService, 'create').resolves(responseService);
+    Sinon.stub(baseService, 'createMotorcycle').resolves(responseService);
 
-    await baseController.create(req as Request, res as Response, next);
+    await baseController.createMotorcycle(req as Request, res as Response, next);
 
     expect(res.status).to.be.calledWith(201);
     expect(res.json).to.be.calledWith(responseService);
   });
 
-  it('Testando getById', async function () {
+  it('Testando getMotorcycleById', async function () {
     const params = { 
       id: '641c68c9549f6f09505e08a6',
     };
@@ -72,30 +72,30 @@ describe('Testando a camada controller de cars', function () {
       engineCapacity: 600,
     };
 
-    Sinon.stub(baseService, 'getById').resolves(responseService);
+    Sinon.stub(baseService, 'findById').resolves(responseService);
 
-    await baseController.getById(req as Request, res as Response, next);
+    await baseController.getMotorcycleById(req as Request, res as Response, next);
 
     expect(res.status).to.be.calledWith(200);
     expect(res.json).to.be.calledWith(responseService);
   });
 
-  it('Testando getAll', async function () {    
+  it('Testando getAllMotorcycles', async function () {    
     const res: Partial<Response> = {};
     const req: Partial<Request> = {};
     res.status = Sinon.stub().returns(res);
     res.json = Sinon.stub().returns({});
     const next = () => {};
 
-    Sinon.stub(baseService, 'getAll').resolves(motorcyclesArray);
+    Sinon.stub(baseService, 'getAllMotorcycles').resolves(motorcyclesArray);
 
-    await baseController.getAll(req as Request, res as Response, next);
+    await baseController.getAllMotorcycles(req as Request, res as Response, next);
 
     expect(res.status).to.be.calledWith(200);
     expect(res.json).to.be.calledWith(motorcyclesArray);
   });
 
-  it('Testando update', async function () {    
+  it('Testando updateMotorcycle', async function () {    
     const params = { id: '641c68c9549f6f09505e08a6' };
     const body = { 
       model: 'Honda Cb 600f Hornet',
@@ -114,13 +114,13 @@ describe('Testando a camada controller de cars', function () {
 
     Sinon.stub(baseService, 'update').resolves({ id: params.id, ...body });
 
-    await baseController.update(req as Request, res as Response, next);
+    await baseController.updateMotorcycle(req as Request, res as Response, next);
 
     expect(res.status).to.be.calledWith(200);
     expect(res.json).to.be.calledWith({ id: params.id, ...body });
   });
 
-  it('Testando delete', async function () {    
+  it('Testando deleteMotorcycle', async function () {    
     const params = { id: '641c68c9549f6f09505e08a6' };
     const res: Partial<Response> = { };
     const req: Partial<Request> = { params };
@@ -130,13 +130,13 @@ describe('Testando a camada controller de cars', function () {
 
     Sinon.stub(baseService, 'delete').resolves();
 
-    await baseController.delete(req as Request, res as Response, next);
+    await baseController.deleteMotorcycle(req as Request, res as Response, next);
 
     expect(res.status).to.be.calledWith(204);
     expect(res.end).to.callCount(1);
   });
 
-  it('Testando execeção do create', async function () {  
+  it('Testando execeção do createMotorcycle', async function () {  
     const body = { 
       model: 'Honda Cb 800f Hornet',
       year: 2005,
@@ -152,42 +152,42 @@ describe('Testando a camada controller de cars', function () {
     res.json = Sinon.stub().returns({});
     const next = Sinon.stub().returns(undefined);
 
-    Sinon.stub(baseService, 'create').throws(error);
+    Sinon.stub(baseService, 'createMotorcycle').throws(error);
 
-    await baseController.create(req as Request, res as Response, next);
+    await baseController.createMotorcycle(req as Request, res as Response, next);
 
     expect(next).to.be.calledWith(error);
   });
 
-  it('Testando execeção do getById', async function () {    
+  it('Testando execeção do getMotorcycleById', async function () {    
     const res: Partial<Response> = {};
     const req: Partial<Request> = { params: { id: '641c68c9549f6f09505e08a6' } };
     res.status = Sinon.stub().returns(res);
     res.json = Sinon.stub().returns({});
     const next = Sinon.stub().returns(undefined);
 
-    Sinon.stub(baseService, 'getById').throws(error);
+    Sinon.stub(baseService, 'findById').throws(error);
 
-    await baseController.getById(req as Request, res as Response, next);
+    await baseController.getMotorcycleById(req as Request, res as Response, next);
 
     expect(next).to.be.calledWith(error);
   });
 
-  it('Testando exceção getAll', async function () {    
+  it('Testando exceção getAllMotorcycles', async function () {    
     const res: Partial<Response> = {};
     const req: Partial<Request> = {};
     res.status = Sinon.stub().returns(res);
     res.json = Sinon.stub().returns({});
     const next = Sinon.stub().returns(undefined);
 
-    Sinon.stub(baseService, 'getAll').throws(error);
+    Sinon.stub(baseService, 'getAllMotorcycles').throws(error);
 
-    await baseController.getAll(req as Request, res as Response, next);
+    await baseController.getAllMotorcycles(req as Request, res as Response, next);
 
     expect(next).to.be.calledWith(error);
   });
 
-  it('Testando exceção update', async function () {    
+  it('Testando exceção updateMotorcycle', async function () {    
     const params = { id: '641c68c9549f6f09505e08a6' };
     const body = { 
       model: 'Honda Cb 600f Hornet',
@@ -206,12 +206,12 @@ describe('Testando a camada controller de cars', function () {
 
     Sinon.stub(baseService, 'update').throws(error);
 
-    await baseController.update(req as Request, res as Response, next);
+    await baseController.updateMotorcycle(req as Request, res as Response, next);
 
     expect(next).to.be.calledWith(error);
   });
 
-  it('Testando exceção delete', async function () {    
+  it('Testando exceção deleteMotorcycle', async function () {    
     const params = { id: '641c68c9549f6f09505e08a6' };
     const res: Partial<Response> = { };
     const req: Partial<Request> = { params };
@@ -221,7 +221,7 @@ describe('Testando a camada controller de cars', function () {
 
     Sinon.stub(baseService, 'delete').throws(error);
 
-    await baseController.delete(req as Request, res as Response, next);
+    await baseController.deleteMotorcycle(req as Request, res as Response, next);
 
     expect(next).to.be.calledWith(error);
   });

@@ -1,6 +1,8 @@
+// import ICar from '../../../src/Interfaces/ICar';
+
 export const carsArray = [
   {
-    _id: '641b9c82f24eed6ed589bfda',
+    id: '641b9c82f24eed6ed589bfda',
     model: 'Marea',
     year: 2002,
     color: 'Black',
@@ -10,7 +12,7 @@ export const carsArray = [
     seatsQty: 5,
   },
   {
-    _id: '641b9c82f24eed6ed589bfge',
+    id: '641b9c82f24eed6ed589bfge',
     model: 'Tempra',
     year: 1995,
     color: 'Black',

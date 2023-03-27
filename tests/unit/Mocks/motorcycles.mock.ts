@@ -1,6 +1,4 @@
-import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
-
-export const motorcyclesArray: IMotorcycle[] = [
+export const motorcyclesArray = [
   {
     id: '634852326b35b59438fbea2f',
     model: 'Honda Cb 600f Hornet',

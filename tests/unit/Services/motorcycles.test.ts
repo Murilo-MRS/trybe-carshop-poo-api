@@ -8,7 +8,7 @@ import MotorcycleODM from '../../../src/Models/MotorcycleODM';
 import AppError from '../../../src/errors/AppError';
 import ErrorTypes from '../../../src/utils/ErrorTypes';
 
-describe('Testes rota motorcycles:', function () {
+describe('CAMADA SERVICE - motorcycles:', function () {
   const modelMotorcycle = 'Honda Cb 600f Hornet';
   describe('Caminho com Sucesso', function () {
     it('Deveria cadastar um moto com SUCESSO', async function () {
