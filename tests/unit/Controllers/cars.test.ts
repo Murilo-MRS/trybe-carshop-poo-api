@@ -7,7 +7,6 @@ import CarController from '../../../src/Controllers/CarController';
 import CarModel from '../../../src/Models/CarODM';
 import { carsArray } from '../Mocks/cars.mock';
 
-
 Chai.use(sinonChai);
 
 const { expect } = Chai;
